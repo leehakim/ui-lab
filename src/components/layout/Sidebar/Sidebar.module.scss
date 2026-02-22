@@ -1,3 +1,14 @@
 .sidebar {
   border-right: 1px solid #ddd;
 }
+
+.title {
+  padding: 8px 16px;
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 16px;
+}
