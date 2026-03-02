@@ -1,73 +1,36 @@
-# React + TypeScript + Vite
+### 🧪 UI Lab Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+최신 프론트엔드 기술(React, TypeScript, Zustand)을 결합한 UI 컴포넌트 플레이그라운드입니다. 컴포넌트의 가독성, 재사용성, 그리고 효율적인 디자인 시스템 구축을 연구하기 위한 실험실입니다.
 
-Currently, two official plugins are available:
+## 📂 Folder Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── assets/       # 이미지, 아이콘
+├── components/   # 공유 컴포넌트 및 레이아웃
+│ └── layout/     # 사이드바, 프리뷰, 컨트롤패널 등 서비스 골격 컴포넌트
+├── constants/    # 전역 상수
+├── library/      # UI 컴포넌트 (Button, Input 등 독립적 설계)
+├── store/        # Zustand를 이용한 전역 상태 관리
+├── styles/       # 전역 SCSS 관리 (reset, variables, fonts, mixins 등)
+├── App.tsx       # 메인 엔트리 및 전체 레이아웃 구성
+└── main.scss     # 전역 스타일 엔트리
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Framework: React 18+
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Language: TypeScript (Type-safe Props 및 Store 관리)
+
+State Management: Zustand (컴포넌트별 동적 옵션 연동)
+
+Styling: SCSS Modules (BEM 구조 지향 및 변수 활용)
+
+## 🚀 Key Features
+
+Dynamic Rendering: 사이드바에서 선택한 컴포넌트를 Preview 영역에 즉시 렌더링합니다.
+
+Live Playground: ControlPanel에서 실시간으로 Props(variant, size, label 등)를 변경하며 컴포넌트 변화를 확인합니다.
+
+Scalable Architecture: 새로운 컴포넌트 추가 시 constants 파일 업데이트만으로 메뉴와 설정이 자동 연동되는 확장성 있는 구조를 지향합니다.

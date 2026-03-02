@@ -1,5 +1,7 @@
 /* 1. Box sizing & Reset margin/padding */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -13,6 +15,7 @@ html {
 
 body {
   min-height: 100vh;
+  font-family: 'Pretendard';
   line-height: 1.5;
   -webkit-font-smoothing: antialiased; /* 폰트 렌더링 최적화 */
   -moz-osx-font-smoothing: grayscale;
@@ -21,13 +24,20 @@ body {
 }
 
 /* 3. Media elements */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 
 /* 4. Form elements reset */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit; /* 부모 폰트 상속 */
   color: inherit;
   appearance: none; /* 브라우저 기본 UI 제거 */
@@ -41,7 +51,8 @@ button {
 }
 
 /* 5. List reset */
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -50,4 +61,3 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
