@@ -21,11 +21,11 @@ src/
 
 Framework: React 18+
 
-Language: TypeScript (Type-safe Props 및 Store 관리)
+Language: TypeScript 
 
-State Management: Zustand (컴포넌트별 동적 옵션 연동)
+State Management: Zustand
 
-Styling: SCSS Modules (BEM 구조 지향 및 변수 활용)
+Styling: SCSS Modules 
 
 ## 🚀 Key Features
 
