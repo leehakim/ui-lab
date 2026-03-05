@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import type { ComponentId } from '@/constants/components'
 import type { ButtonProps } from '@/library/Button'
 import type { InputProps } from '@/library/Input'
+import type { CheckboxProps } from '@/library/Checkbox/Checkbox'
 
 interface EditorState {
   selectedComponent: ComponentId
@@ -9,6 +10,7 @@ interface EditorState {
   configs: {
     Button: ButtonProps
     Input: InputProps
+    Checkbox: CheckboxProps
   }
   updateConfig: <T extends ComponentId>(
     id: T,
@@ -26,7 +28,11 @@ const initConfigs: EditorState['configs'] = {
   Input: {
     placeholder: '텍스트를 입력하세요',
     type: 'text',
-    value: 'Input Label',
+    label: 'Input Label',
+    disabled: false,
+  },
+  Checkbox: {
+    disabled: false,
   },
 }
 

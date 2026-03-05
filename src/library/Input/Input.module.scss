@@ -1,0 +1,21 @@
+.input {
+  display: inline-flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.inputWrap {
+  width: 100%;
+
+  input {
+    display: block;
+    height: 38px;
+    padding: 0 8px;
+
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+}

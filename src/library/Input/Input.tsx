@@ -1,19 +1,23 @@
+import styles from './Input.module.scss'
+
 export interface InputProps {
-  value?: string
+  label?: string
   type?: string
   placeholder?: string
   disabled?: boolean
 }
 
 export function Input({
-  value = 'text',
+  label = 'text',
   type = 'text',
   placeholder = 'placeholder',
   disabled = false,
 }: InputProps) {
   return (
-    <div className="input">
-      <input type={type} value={value} placeholder={placeholder} disabled={disabled} />
+    <div className={styles.input}>
+      <div className={styles.inputWrap}>
+        <input type={type} value={label} placeholder={placeholder} disabled={disabled} />
+      </div>
     </div>
   )
 }

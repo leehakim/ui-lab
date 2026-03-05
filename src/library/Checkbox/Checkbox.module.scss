@@ -1,0 +1,18 @@
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkboxIcon {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.checkboxLabel {
+  color: #333;
+  font-size: 12px;
+}
