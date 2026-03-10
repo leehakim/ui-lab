@@ -1,16 +1,26 @@
 .controlPanel {
-  border-left: 1px solid #ddd;
+  background-color: $clr-gray-200;
 }
 
 .table {
   table {
     table-layout: fixed;
     border-collapse: collapse;
+    width: 100%;
   }
 
   th,
   td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $ui-border-light;
+  }
+
+  th {
+    padding: 0 16px;
+    color: $ui-text-muted;
+    text-align: left;
+    text-transform: capitalize;
+  }
+  td {
+    padding: 12px 16px;
   }
 }

@@ -1,37 +1,51 @@
 import { useEditorStore } from '@/store/useEditorStore'
 import { Checkbox } from '@/library/Checkbox'
 import styles from './ControlPanel.module.scss'
+import { Input } from '@/library/Input'
 
 export function ControlPanel() {
-  const { selectedComponent, configs } = useEditorStore()
+  const { selectedComponent, configs, updateConfig } = useEditorStore()
+  const currentConfig = configs[selectedComponent]
+
+  /**
+   * 커링(Currying)
+   * 함수를 리턴하는 함수 () => () => {}
+   */
+  const handleInputChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateConfig(selectedComponent, { [key]: e.target.value })
+  }
 
   return (
     <aside className={styles.controlPanel}>
-      <p>control panel</p>
+      {/* <p>control panel</p> */}
       <div className={styles.table}>
         <table>
+          <colgroup>
+            <col width="30%" />
+            <col />
+          </colgroup>
           <tbody>
-            <tr>
-              <th scope="row">label</th>
-              <td>
-                <input type="text" value={configs[selectedComponent].label} />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">variant</th>
-              <td>
-                <div className="item-list">
-                  <input type="radio" name="variant" value="primary" defaultChecked />
-                  <input type="radio" name="variant" value="outline" />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">disabled</th>
-              <td>
-                <Checkbox checked={configs[selectedComponent].disabled} />
-              </td>
-            </tr>
+            {/* Label: undefined가 아닐 때만 노출 */}
+            {'label' in currentConfig && (
+              <tr>
+                <th scope="row">label</th>
+                <td>
+                  <Input label={currentConfig?.label || ''} onChange={handleInputChange('label')} />
+                </td>
+              </tr>
+            )}
+            {/* Disabled: 속성이 존재한다면 true/false 상관없이 노출 */}
+            {'disabled' in currentConfig && (
+              <tr>
+                <th scope="row">disabled</th>
+                <td>
+                  <Checkbox
+                    checked={currentConfig.disabled}
+                    onChange={(checked) => updateConfig(selectedComponent, { disabled: checked })}
+                  />
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

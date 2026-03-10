@@ -1,18 +1,50 @@
 .checkbox {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-}
+  vertical-align: middle;
+  cursor: pointer;
 
-.checkboxIcon {
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
+  .checkboxIcon {
+    padding: 4px;
+    background-color: $clr-white;
+    border: 1px solid $ui-border-strong;
+    border-radius: 8px;
+    transition: $ui-transition;
 
-.checkboxLabel {
-  color: #333;
-  font-size: 12px;
+    .icon {
+      display: block;
+      width: 16px;
+      height: 16px;
+      color: transparent;
+    }
+  }
+
+  .checkboxLabel {
+    color: $ui-text-main;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  // checked
+  &.checked {
+    .checkboxIcon {
+      background-color: $clr-primary;
+      border-color: $clr-primary;
+
+      .icon {
+        color: $clr-white;
+      }
+    }
+  }
+
+  // disabled
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .checkboxIcon {
+      background-color: $clr-gray-100;
+      border-color: $clr-gray-300;
+    }
+  }
 }

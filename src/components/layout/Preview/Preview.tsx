@@ -9,9 +9,9 @@ export function Preview() {
 
   return (
     <section className={styles.preview}>
-      <h3>Preview: {selectedComponent}</h3>
-      <div className="previewContent">
-        <Target {...props} />
+      <h3 className={styles.title}>Preview: {selectedComponent}</h3>
+      <div className={styles.previewContent}>
+        <Target {...props} readOnly={true} />
       </div>
     </section>
   )

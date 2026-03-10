@@ -8,7 +8,6 @@ export function Sidebar() {
 
   return (
     <aside className={styles.sidebar}>
-      <h2 className={styles.title}>Components</h2>
       <ul className={styles.menuList}>
         {MENU_ITEMS.map((item) => (
           <li key={item.id}>

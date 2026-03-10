@@ -1,18 +1,24 @@
 .sidebar {
-  border-right: 1px solid #ddd;
-}
-
-.title {
-  padding: 8px 16px;
+  background-color: $clr-white;
 }
 
 .menuBtn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 16px;
+  width: 100%;
+  padding: 8px 16px;
+  border-left: 3px solid transparent;
+  color: $clr-gray-800;
+  transition: $ui-transition;
+
+  &:not(.isCurrent):hover {
+    background-color: $clr-gray-100;
+  }
 }
 
 .isCurrent {
-  color: blue;
+  color: $clr-primary;
+  background-color: $clr-primary-light;
+  border-left-color: $clr-primary;
 }

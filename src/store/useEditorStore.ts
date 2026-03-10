@@ -32,6 +32,7 @@ const initConfigs: EditorState['configs'] = {
     disabled: false,
   },
   Checkbox: {
+    label: '',
     disabled: false,
   },
 }

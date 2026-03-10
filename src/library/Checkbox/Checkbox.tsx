@@ -1,17 +1,30 @@
 import styles from './Checkbox.module.scss'
+import clsx from 'clsx'
+import { Check } from 'lucide-react'
 
 export interface CheckboxProps {
   label?: string
   checked?: boolean
   disabled?: boolean
+  onChange?: (checked: boolean) => void
 }
 
-export function Checkbox({ label, checked, disabled = false }: CheckboxProps) {
+export function Checkbox({ label, checked, disabled = false, onChange }: CheckboxProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(e.target.checked)
+    }
+  }
+
   return (
-    <label className={styles.checkbox}>
-      <input type="checkbox" checked={checked} disabled={disabled} />
-      <span className={styles.checkboxIcon}></span>
-      <span className={styles.checkboxLabel}>{label}</span>
+    <label
+      className={clsx(styles.checkbox, { [styles.checked]: checked, [styles.disabled]: disabled })}
+    >
+      <input type="checkbox" checked={checked} disabled={disabled} onChange={handleChange} />
+      <span className={styles.checkboxIcon}>
+        <Check className={styles.icon} />
+      </span>
+      {label && <span className={styles.checkboxLabel}>{label}</span>}
     </label>
   )
 }

@@ -6,6 +6,7 @@ export interface ButtonProps {
   variant?: 'primary' | 'outlined'
   size?: 'sm' | 'md' | 'lg'
   label?: string
+  readonly?: boolean
   disabled?: boolean
   className?: string
   children?: ReactNode
@@ -25,9 +26,9 @@ export function Button({
       disabled={disabled}
       className={clsx(
         styles.button,
+        { [styles.disabled]: disabled },
         styles[size],
         styles[variant],
-        disabled && styles.disabled,
         className,
       )}
     >
