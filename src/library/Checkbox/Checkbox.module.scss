@@ -25,6 +25,11 @@
     margin-left: 8px;
   }
 
+  &:focus-within .checkboxIcon {
+    border-color: $clr-secondary;
+    box-shadow: 0 0 0 3px rgba($clr-secondary, 0.1);
+  }
+
   // checked
   &.checked {
     .checkboxIcon {

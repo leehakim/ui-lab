@@ -2,6 +2,7 @@ import { useEditorStore } from '@/store/useEditorStore'
 import { Checkbox } from '@/library/Checkbox'
 import styles from './ControlPanel.module.scss'
 import { Input } from '@/library/Input'
+import { Select } from '@/library/Select/Select'
 
 export function ControlPanel() {
   const { selectedComponent, configs, updateConfig } = useEditorStore()
@@ -34,6 +35,17 @@ export function ControlPanel() {
                 </td>
               </tr>
             )}
+
+            {'size' in currentConfig && (
+              <tr>
+                <th scope="row">size</th>
+                <td>
+                  {/* <Select value={currentConfig?.size} options={} /> */}
+                  size
+                </td>
+              </tr>
+            )}
+
             {/* Disabled: 속성이 존재한다면 true/false 상관없이 노출 */}
             {'disabled' in currentConfig && (
               <tr>

@@ -6,6 +6,7 @@ export interface InputProps {
   type?: string
   placeholder?: string
   error?: boolean
+  readonly?: boolean
   disabled?: boolean
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -15,6 +16,7 @@ export function Input({
   type = 'text',
   placeholder = 'placeholder',
   error = false,
+  readonly = false,
   disabled = false,
   onChange,
 }: InputProps) {
@@ -25,6 +27,7 @@ export function Input({
           type={type}
           value={label}
           placeholder={placeholder}
+          readOnly={readonly}
           disabled={disabled}
           onChange={onChange}
         />

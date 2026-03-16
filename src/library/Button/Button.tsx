@@ -6,7 +6,6 @@ export interface ButtonProps {
   variant?: 'primary' | 'outlined'
   size?: 'sm' | 'md' | 'lg'
   label?: string
-  readonly?: boolean
   disabled?: boolean
   className?: string
   children?: ReactNode

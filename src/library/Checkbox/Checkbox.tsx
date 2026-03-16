@@ -5,11 +5,18 @@ import { Check } from 'lucide-react'
 export interface CheckboxProps {
   label?: string
   checked?: boolean
+  readonly?: boolean
   disabled?: boolean
   onChange?: (checked: boolean) => void
 }
 
-export function Checkbox({ label, checked, disabled = false, onChange }: CheckboxProps) {
+export function Checkbox({
+  label,
+  checked,
+  readonly = false,
+  disabled = false,
+  onChange,
+}: CheckboxProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(e.target.checked)
@@ -20,7 +27,13 @@ export function Checkbox({ label, checked, disabled = false, onChange }: Checkbo
     <label
       className={clsx(styles.checkbox, { [styles.checked]: checked, [styles.disabled]: disabled })}
     >
-      <input type="checkbox" checked={checked} disabled={disabled} onChange={handleChange} />
+      <input
+        type="checkbox"
+        checked={checked}
+        readOnly={readonly}
+        disabled={disabled}
+        onChange={handleChange}
+      />
       <span className={styles.checkboxIcon}>
         <Check className={styles.icon} />
       </span>
