@@ -2,12 +2,18 @@ import clsx from 'clsx'
 import type { ReactNode } from 'react'
 import styles from './Button.module.scss'
 
+export const BUTTON_META = {
+  variant: ['primary', 'outlined', 'secondary'],
+  size: ['sm', 'md', 'lg'],
+  label: 'string',
+  disabled: 'boolean',
+} as const
+
 export interface ButtonProps {
-  variant?: 'primary' | 'outlined'
-  size?: 'sm' | 'md' | 'lg'
+  variant?: (typeof BUTTON_META.variant)[number]
+  size?: (typeof BUTTON_META.size)[number]
   label?: string
   disabled?: boolean
-  className?: string
   children?: ReactNode
 }
 
@@ -16,7 +22,6 @@ export function Button({
   size = 'md',
   label,
   disabled = false,
-  className,
   children,
 }: ButtonProps) {
   return (
@@ -28,7 +33,6 @@ export function Button({
         { [styles.disabled]: disabled },
         styles[size],
         styles[variant],
-        className,
       )}
     >
       {label || children}

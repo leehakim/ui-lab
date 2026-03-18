@@ -1,12 +1,21 @@
 import { useEditorStore } from '@/store/useEditorStore'
-import { Checkbox } from '@/library/Checkbox'
+import { Checkbox, CHECKBOX_META } from '@/library/Checkbox'
 import styles from './ControlPanel.module.scss'
-import { Input } from '@/library/Input'
+import { Input, INPUT_META } from '@/library/Input'
 import { Select } from '@/library/Select/Select'
+import { BUTTON_META } from '@/library/Button'
+
+const COMPONENT_METAS = {
+  Button: BUTTON_META,
+  Checkbox: CHECKBOX_META,
+  Input: INPUT_META,
+}
 
 export function ControlPanel() {
   const { selectedComponent, configs, updateConfig } = useEditorStore()
   const currentConfig = configs[selectedComponent]
+
+  const meta = COMPONENT_METAS[selectedComponent]
 
   /**
    * 커링(Currying)
@@ -26,7 +35,7 @@ export function ControlPanel() {
             <col />
           </colgroup>
           <tbody>
-            {/* Label: undefined가 아닐 때만 노출 */}
+            {/* Label */}
             {'label' in currentConfig && (
               <tr>
                 <th scope="row">label</th>
@@ -40,8 +49,11 @@ export function ControlPanel() {
               <tr>
                 <th scope="row">size</th>
                 <td>
-                  {/* <Select value={currentConfig?.size} options={} /> */}
-                  size
+                  <Select
+                    selected={currentConfig?.size}
+                    options={meta.size.map((v: string) => ({ value: v, label: v }))}
+                    onChange={(val) => updateConfig(selectedComponent, { size: val })}
+                  />
                 </td>
               </tr>
             )}

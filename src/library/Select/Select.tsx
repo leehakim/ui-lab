@@ -1,47 +1,65 @@
 import clsx from 'clsx'
 import styles from './Select.module.scss'
 import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+
+export const SELECT_META = {
+  selected: 'string',
+  disabled: 'boolean',
+  placeholder: 'string',
+} as const
 
 export interface SelectProps {
-  value?: string | number
-  options: string[] | number[]
+  selected?: string
+  options: { value: string; label: string }[]
+  onChange: (value: string) => void
   disabled?: boolean
   placeholder?: string
 }
 
 export function Select({
-  value,
+  selected,
   options,
+  onChange,
   disabled = false,
   placeholder = 'Select item',
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleSelect = (newValue) => {
-    value = newValue
+  const handleSelect = (value: string) => {
+    onChange?.(value)
+    setIsOpen(false)
   }
 
   return (
-    <div className={styles.select} role="combobox" aria-haspopup="listbox" aria-expanded="false">
+    <div
+      className={clsx(styles.select, { [styles.isOpen]: isOpen })}
+      role="combobox"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+    >
       <button
         type="button"
         className={styles.trigger}
         disabled={disabled}
         onClick={(isOpen) => setIsOpen(!isOpen)}
       >
-        {placeholder || value}
+        <span>{selected ? selected : placeholder}</span>
+        <ChevronDown className={styles.arrow} />
       </button>
-      <div className={clsx(styles.listPopup, { [styles.isOpen]: isOpen })}>
-        <ul role="listbox">
-          {options.map((option) => (
-            <li key={option}>
-              <button type="button" role="option" onClick={() => handleSelect(option)}>
-                {option}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {isOpen && (
+        <div className={styles.listPopup}>
+          <ul role="listbox">
+            {options.map((option) => (
+              <li key={option.value}>
+                <button type="button" role="option" onClick={() => handleSelect(option.value)}>
+                  {option.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

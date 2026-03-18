@@ -2,6 +2,13 @@ import styles from './Checkbox.module.scss'
 import clsx from 'clsx'
 import { Check } from 'lucide-react'
 
+export const CHECKBOX_META = {
+  label: 'string',
+  checked: 'boolean',
+  readonly: 'boolean',
+  disabled: 'boolean',
+} as const
+
 export interface CheckboxProps {
   label?: string
   checked?: boolean
@@ -12,7 +19,7 @@ export interface CheckboxProps {
 
 export function Checkbox({
   label,
-  checked,
+  checked = false,
   readonly = false,
   disabled = false,
   onChange,

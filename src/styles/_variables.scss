@@ -31,5 +31,20 @@ $ui-text-main: $clr-gray-800;
 $ui-text-muted: $clr-gray-600;
 
 // 5. Shadow & Interaction
-$ui-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+// 부드럽고 깊이감 있는 그림자
+$ui-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$ui-shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+// Select 팝업이나 모달에 주로 사용
+$ui-shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+// Transition
 $ui-transition: all 0.2s ease-in-out;
+
+// Z-index (레이어 순서)
+$z-dropdown: 1000;
+$z-modal: 2000;

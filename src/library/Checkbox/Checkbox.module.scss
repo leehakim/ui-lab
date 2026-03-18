@@ -5,14 +5,13 @@
   cursor: pointer;
 
   .checkboxIcon {
-    padding: 4px;
+    padding: 3px;
     background-color: $clr-white;
     border: 1px solid $ui-border-strong;
     border-radius: 8px;
     transition: $ui-transition;
 
     .icon {
-      display: block;
       width: 16px;
       height: 16px;
       color: transparent;
