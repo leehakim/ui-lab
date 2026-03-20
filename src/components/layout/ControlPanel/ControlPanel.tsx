@@ -27,49 +27,38 @@ export function ControlPanel() {
 
   return (
     <aside className={styles.controlPanel}>
-      {/* <p>control panel</p> */}
       <div className={styles.table}>
         <table>
           <colgroup>
-            <col width="30%" />
+            <col width="35%" />
             <col />
           </colgroup>
           <tbody>
-            {/* Label */}
-            {'label' in currentConfig && (
-              <tr>
-                <th scope="row">label</th>
-                <td>
-                  <Input label={currentConfig?.label || ''} onChange={handleInputChange('label')} />
-                </td>
-              </tr>
-            )}
+            {Object.entries(meta).map(([key, schema]) => {
+              const value = currentConfig?.[key as keyof typeof currentConfig]
 
-            {'size' in currentConfig && (
-              <tr>
-                <th scope="row">size</th>
-                <td>
-                  <Select
-                    selected={currentConfig?.size}
-                    options={meta.size.map((v: string) => ({ value: v, label: v }))}
-                    onChange={(val) => updateConfig(selectedComponent, { size: val })}
-                  />
-                </td>
-              </tr>
-            )}
-
-            {/* Disabled: 속성이 존재한다면 true/false 상관없이 노출 */}
-            {'disabled' in currentConfig && (
-              <tr>
-                <th scope="row">disabled</th>
-                <td>
-                  <Checkbox
-                    checked={currentConfig.disabled}
-                    onChange={(checked) => updateConfig(selectedComponent, { disabled: checked })}
-                  />
-                </td>
-              </tr>
-            )}
+              return (
+                <tr key={key}>
+                  <th scope="row">{key}</th>
+                  <td>
+                    {schema === 'string' ? (
+                      <Input label={String(value ?? '')} onChange={handleInputChange('label')} />
+                    ) : schema === 'boolean' ? (
+                      <Checkbox
+                        checked={Boolean(value)}
+                        onChange={(checked) => updateConfig(selectedComponent, { [key]: checked })}
+                      />
+                    ) : (
+                      <Select
+                        selected={String(value)}
+                        options={schema.map((v: string) => ({ value: v, label: v }))}
+                        onChange={(val) => updateConfig(selectedComponent, { [key]: val })}
+                      />
+                    )}
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>

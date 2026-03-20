@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import styles from './Select.module.scss'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 export const SELECT_META = {
@@ -26,13 +26,35 @@ export function Select({
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
 
+  const selectRef = useRef<HTMLDivElement>(null)
+
   const handleSelect = (value: string) => {
     onChange?.(value)
     setIsOpen(false)
   }
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(e.target as Node)) setIsOpen(false)
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key == 'Escape') setIsOpen(false)
+    }
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+      document.addEventListener('click', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [isOpen])
+
   return (
     <div
+      ref={selectRef}
       className={clsx(styles.select, { [styles.isOpen]: isOpen })}
       role="combobox"
       aria-haspopup="listbox"
@@ -42,7 +64,7 @@ export function Select({
         type="button"
         className={styles.trigger}
         disabled={disabled}
-        onClick={(isOpen) => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selected ? selected : placeholder}</span>
         <ChevronDown className={styles.arrow} />
@@ -52,7 +74,14 @@ export function Select({
           <ul role="listbox">
             {options.map((option) => (
               <li key={option.value}>
-                <button type="button" role="option" onClick={() => handleSelect(option.value)}>
+                <button
+                  type="button"
+                  role="option"
+                  className={clsx(styles.option, {
+                    [styles.isSelected]: selected === option.label,
+                  })}
+                  onClick={() => handleSelect(option.value)}
+                >
                   {option.label}
                 </button>
               </li>
