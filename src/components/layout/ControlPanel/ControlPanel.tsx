@@ -4,11 +4,13 @@ import styles from './ControlPanel.module.scss'
 import { Input, INPUT_META } from '@/library/Input'
 import { Select } from '@/library/Select/Select'
 import { BUTTON_META } from '@/library/Button'
+import { CARD_META } from '@/library/Card/Card'
 
 const COMPONENT_METAS = {
   Button: BUTTON_META,
   Checkbox: CHECKBOX_META,
   Input: INPUT_META,
+  Card: CARD_META,
 }
 
 export function ControlPanel() {
@@ -16,14 +18,6 @@ export function ControlPanel() {
   const currentConfig = configs[selectedComponent]
 
   const meta = COMPONENT_METAS[selectedComponent]
-
-  /**
-   * 커링(Currying)
-   * 함수를 리턴하는 함수 () => () => {}
-   */
-  const handleInputChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateConfig(selectedComponent, { [key]: e.target.value })
-  }
 
   return (
     <aside className={styles.controlPanel}>
@@ -42,7 +36,10 @@ export function ControlPanel() {
                   <th scope="row">{key}</th>
                   <td>
                     {schema === 'string' ? (
-                      <Input label={String(value ?? '')} onChange={handleInputChange('label')} />
+                      <Input
+                        value={String(value ?? '')}
+                        onChange={(str) => updateConfig(selectedComponent, { [key]: str })}
+                      />
                     ) : schema === 'boolean' ? (
                       <Checkbox
                         checked={Boolean(value)}

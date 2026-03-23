@@ -3,6 +3,7 @@ import type { ComponentId } from '@/constants/components'
 import type { ButtonProps } from '@/library/Button'
 import type { InputProps } from '@/library/Input'
 import type { CheckboxProps } from '@/library/Checkbox/Checkbox'
+import type { CardProps } from '@/library/Card/Card'
 
 interface EditorState {
   selectedComponent: ComponentId
@@ -11,6 +12,7 @@ interface EditorState {
     Button: ButtonProps
     Input: InputProps
     Checkbox: CheckboxProps
+    Card: CardProps
   }
   updateConfig: <T extends ComponentId>(
     id: T,
@@ -28,12 +30,17 @@ const initConfigs: EditorState['configs'] = {
   Input: {
     placeholder: '텍스트를 입력하세요',
     type: 'text',
-    label: 'Input Label',
+    value: 'Input',
     disabled: false,
   },
   Checkbox: {
     label: '',
     disabled: false,
+  },
+  Card: {
+    title: 'Title',
+    description: 'Description',
+    padding: 'md',
   },
 }
 

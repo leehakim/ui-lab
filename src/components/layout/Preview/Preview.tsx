@@ -1,6 +1,7 @@
 import { COMPONENT_MAP } from '@/constants/components'
 import { useEditorStore } from '@/store/useEditorStore'
 import styles from './Preview.module.scss'
+import { Card } from '@/library/Card/Card'
 
 export function Preview() {
   const { selectedComponent, configs } = useEditorStore()
@@ -9,10 +10,9 @@ export function Preview() {
 
   return (
     <section className={styles.preview}>
-      <h3 className={styles.title}>Preview: {selectedComponent}</h3>
-      <div className={styles.previewContent}>
+      <Card title={selectedComponent}>
         <Target {...props} readonly={true} />
-      </div>
+      </Card>
     </section>
   )
 }

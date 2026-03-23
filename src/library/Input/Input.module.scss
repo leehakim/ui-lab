@@ -2,6 +2,7 @@
   overflow: hidden;
   display: inline-flex;
   align-items: center;
+  width: 100%;
   background-color: $clr-white;
   border: 1px solid $ui-border-strong;
   border-radius: 8px;
@@ -21,7 +22,15 @@
       &::placeholder {
         color: $clr-gray-400;
       }
+
+      &:disabled {
+        cursor: inherit;
+      }
     }
+  }
+
+  &:hover:not(.disabled):not(.error) {
+    border-color: $clr-gray-400;
   }
 
   &:focus-within {
@@ -37,7 +46,6 @@
 
     input {
       color: $ui-text-muted;
-      pointer-events: none;
     }
   }
 

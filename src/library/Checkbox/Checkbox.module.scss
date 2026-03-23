@@ -15,6 +15,7 @@
       width: 16px;
       height: 16px;
       color: transparent;
+      transition: $ui-transition;
     }
   }
 
@@ -22,6 +23,7 @@
     color: $ui-text-main;
     font-size: 14px;
     margin-left: 8px;
+    transition: $ui-transition;
   }
 
   &:focus-within .checkboxIcon {
@@ -47,8 +49,24 @@
     opacity: 0.6;
 
     .checkboxIcon {
-      background-color: $clr-gray-100;
+      background-color: $clr-gray-200;
       border-color: $clr-gray-300;
+    }
+    .checkboxLabel {
+      color: $ui-text-muted;
+    }
+  }
+
+  &.checked.disabled {
+    .checkboxIcon {
+      background-color: $clr-gray-400; // 진한 회색으로 비활성화 표시
+      border-color: $clr-gray-400;
+      .icon {
+        color: $clr-gray-100; // 체크 표시가 흰색이면 너무 튀니, 아주 연한 회색으로
+      }
+    }
+    .checkboxLabel {
+      color: $ui-text-disabled; // 새로 추가한 $clr-gray-500 기반 토큰
     }
   }
 }

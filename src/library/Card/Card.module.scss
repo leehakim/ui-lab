@@ -1,0 +1,58 @@
+// Card.module.scss
+
+.card {
+  background-color: $clr-white;
+  border-radius: 12px;
+  transition: $ui-transition;
+  width: 100%;
+
+  // Header
+  .header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $ui-border-light; // 구분선
+    margin-bottom: 20px;
+
+    .title {
+      color: $ui-text-main;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .description {
+      color: $ui-text-muted;
+      font-size: 14px;
+      margin: 4px 0 0 0;
+    }
+  }
+
+  // Body
+  .body {
+    // 여기에 인풋, 버튼이 들어갔을 때의 스타일을 정의할 수도 있습니다.
+    // 예: 자식 요소들 사이에 간격을 줍니다.
+    & > * + * {
+      margin-top: 16px;
+    }
+  }
+
+  // Padding
+  &.sm {
+    padding: 16px;
+  }
+  &.md {
+    padding: 24px;
+  }
+  &.lg {
+    padding: 32px;
+  }
+
+  // Shadow
+  &.hasShadow {
+    box-shadow: $ui-shadow-md;
+  }
+
+  // Border
+  &.isBordered {
+    border: 1px solid $ui-border-light;
+  }
+}
