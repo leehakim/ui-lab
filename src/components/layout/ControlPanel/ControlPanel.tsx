@@ -30,17 +30,18 @@ export function ControlPanel() {
           <tbody>
             {Object.entries(meta).map(([key, schema]) => {
               const value = currentConfig?.[key as keyof typeof currentConfig]
+              const { type } = schema
 
               return (
                 <tr key={key}>
                   <th scope="row">{key}</th>
                   <td>
-                    {schema === 'string' ? (
+                    {type === 'string' ? (
                       <Input
                         value={String(value ?? '')}
                         onChange={(str) => updateConfig(selectedComponent, { [key]: str })}
                       />
-                    ) : schema === 'boolean' ? (
+                    ) : type === 'boolean' ? (
                       <Checkbox
                         checked={Boolean(value)}
                         onChange={(checked) => updateConfig(selectedComponent, { [key]: checked })}
@@ -48,7 +49,7 @@ export function ControlPanel() {
                     ) : (
                       <Select
                         selected={String(value)}
-                        options={schema.map((v: string) => ({ value: v, label: v }))}
+                        options={schema.options.map((v: string) => ({ value: v, label: v }))}
                         onChange={(val) => updateConfig(selectedComponent, { [key]: val })}
                       />
                     )}

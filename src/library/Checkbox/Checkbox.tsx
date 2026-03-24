@@ -3,10 +3,10 @@ import clsx from 'clsx'
 import { Check } from 'lucide-react'
 
 export const CHECKBOX_META = {
-  label: 'string',
-  checked: 'boolean',
-  readonly: 'boolean',
-  disabled: 'boolean',
+  label: { type: 'string', default: '' },
+  checked: { type: 'boolean', default: false },
+  readonly: { type: 'boolean', default: false },
+  disabled: { type: 'boolean', default: false },
 } as const
 
 export interface CheckboxProps {
@@ -17,13 +17,7 @@ export interface CheckboxProps {
   onChange?: (checked: boolean) => void
 }
 
-export function Checkbox({
-  label,
-  checked = false,
-  readonly = false,
-  disabled = false,
-  onChange,
-}: CheckboxProps) {
+export function Checkbox({ label, checked, readonly, disabled, onChange }: CheckboxProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(e.target.checked)

@@ -3,17 +3,17 @@ import styles from './Card.module.scss'
 import clsx from 'clsx'
 
 export const CARD_META = {
-  title: 'string',
-  description: 'string',
-  padding: ['sm', 'md', 'lg'],
-  hasShadow: 'boolean',
-  isBoared: 'boolean',
+  title: { type: 'string', default: '' },
+  description: { type: 'string', default: '' },
+  padding: { type: 'select', options: ['sm', 'md', 'lg'], default: 'md' },
+  shadow: { type: 'boolean', default: true },
+  bordered: { type: 'boolean', default: true },
 } as const
 
 export interface CardProps {
   title?: string
   description?: string
-  padding?: (typeof CARD_META.padding)[number]
+  padding?: (typeof CARD_META.padding.options)[number]
   shadow?: boolean
   bordered?: boolean
   children?: ReactNode
@@ -22,7 +22,7 @@ export interface CardProps {
 export function Card({ title, description, padding, shadow, bordered, children }: CardProps) {
   return (
     <div
-      className={clsx(styles.card, styles[padding], {
+      className={clsx(styles.card, styles[padding as keyof typeof styles], {
         [styles.hasShadow]: shadow,
         [styles.isBoard]: bordered,
       })}

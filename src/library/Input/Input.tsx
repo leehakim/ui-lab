@@ -2,17 +2,17 @@ import clsx from 'clsx'
 import styles from './Input.module.scss'
 
 export const INPUT_META = {
-  value: 'string',
-  type: ['text', 'password'],
-  placeholder: 'string',
-  error: 'boolean',
-  readonly: 'boolean',
-  disabled: 'boolean',
+  value: { type: 'string', default: 'Input' },
+  type: { type: 'select', options: ['text', 'password'], default: 'text' },
+  placeholder: { type: 'string', default: 'Input text...' },
+  error: { type: 'boolean', default: false },
+  readonly: { type: 'boolean', default: false },
+  disabled: { type: 'boolean', default: false },
 } as const
 
 export interface InputProps {
   value?: string
-  type?: (typeof INPUT_META.type)[number]
+  type?: (typeof INPUT_META.type.options)[number]
   placeholder?: string
   error?: boolean
   readonly?: boolean
@@ -21,12 +21,12 @@ export interface InputProps {
 }
 
 export function Input({
-  value = 'text',
-  type = 'text',
-  placeholder = 'placeholder',
-  error = false,
-  readonly = false,
-  disabled = false,
+  value,
+  type,
+  placeholder,
+  error,
+  readonly,
+  disabled,
   onChange,
 }: InputProps) {
   return (

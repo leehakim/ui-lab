@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 export const SELECT_META = {
-  selected: 'string',
-  disabled: 'boolean',
-  placeholder: 'string',
+  selected: { type: 'string', default: 'option 1' },
+  options: { type: 'select', options: ['option 1', 'option 2', 'option 3'] },
+  disabled: { type: 'boolean', default: false },
+  placeholder: { type: 'string', default: 'select' },
 } as const
 
 export interface SelectProps {
@@ -17,13 +18,7 @@ export interface SelectProps {
   placeholder?: string
 }
 
-export function Select({
-  selected,
-  options,
-  onChange,
-  disabled = false,
-  placeholder = 'Select item',
-}: SelectProps) {
+export function Select({ selected, options, onChange, disabled, placeholder }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   const selectRef = useRef<HTMLDivElement>(null)

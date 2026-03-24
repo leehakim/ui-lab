@@ -10,7 +10,7 @@ export function Preview() {
 
   return (
     <section className={styles.preview}>
-      <Card title={selectedComponent}>
+      <Card title={selectedComponent} padding="md">
         <Target {...props} readonly={true} />
       </Card>
     </section>
