@@ -36,7 +36,7 @@ export function Checkbox({ label, checked, readonly, disabled, onChange }: Check
         onChange={handleChange}
       />
       <span className={styles.checkboxIcon}>
-        <Check className={styles.icon} />
+        <Check />
       </span>
       {label && <span className={styles.checkboxLabel}>{label}</span>}
     </label>

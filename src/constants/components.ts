@@ -2,12 +2,14 @@ import { Button } from '@/library/Button'
 import { Card } from '@/library/Card/Card'
 import { Checkbox } from '@/library/Checkbox'
 import { Input } from '@/library/Input'
+import { RadioGroup } from '@/library/RadioGroup'
 
 export const COMPONENT_CONFIG = [
   { id: 'Button', label: 'Button', component: Button },
   { id: 'Input', label: 'Input', component: Input },
   { id: 'Checkbox', label: 'Checkbox', component: Checkbox },
   { id: 'Card', label: 'Card', component: Card },
+  { id: 'RadioGroup', label: 'RadioGroup', component: RadioGroup },
 ] as const
 
 // ID들만 뽑아서 타입 생성: 'Button' | 'Input' | 'Checkbox'

@@ -4,15 +4,17 @@ import { BUTTON_META, type ButtonProps } from '@/library/Button'
 import { INPUT_META, type InputProps } from '@/library/Input'
 import { CHECKBOX_META, type CheckboxProps } from '@/library/Checkbox/Checkbox'
 import { CARD_META, type CardProps } from '@/library/Card/Card'
+import { RADIOGROUP_META, type RadioGroupProps } from '@/library/RadioGroup'
 
 interface EditorState {
   selectedComponent: ComponentId
   setComponent: (id: ComponentId) => void
   configs: {
     Button: ButtonProps
-    Input: InputProps
     Checkbox: CheckboxProps
     Card: CardProps
+    Input: InputProps
+    RadioGroup: RadioGroupProps
   }
   updateConfig: <T extends ComponentId>(
     id: T,
@@ -33,9 +35,10 @@ function extractDefaults<T extends Record<string, { default: any }>>(meta: T) {
 
 const initConfigs: EditorState['configs'] = {
   Button: extractDefaults(BUTTON_META) as ButtonProps,
-  Input: extractDefaults(INPUT_META) as InputProps,
   Checkbox: extractDefaults(CHECKBOX_META) as CheckboxProps,
   Card: extractDefaults(CARD_META) as CardProps,
+  Input: extractDefaults(INPUT_META) as InputProps,
+  RadioGroup: extractDefaults(RADIOGROUP_META) as RadioGroupProps,
 }
 
 export const useEditorStore = create<EditorState>((set) => ({

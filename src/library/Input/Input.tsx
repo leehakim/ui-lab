@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import styles from './Input.module.scss'
+import { CircleX } from 'lucide-react'
 
 export const INPUT_META = {
   value: { type: 'string', default: 'Input' },
@@ -29,6 +30,12 @@ export function Input({
   disabled,
   onChange,
 }: InputProps) {
+  const ClearValue = () => {
+    if (onChange) {
+      onChange('')
+    }
+  }
+
   return (
     <div className={clsx(styles.input, { [styles.disabled]: disabled, [styles.error]: error })}>
       <div className={styles.inputWrap}>
@@ -41,6 +48,11 @@ export function Input({
           onChange={(e) => onChange?.(e.target.value)}
         />
       </div>
+      {value && value?.length > 0 && (
+        <button type="button" className={styles.inputBtn} onClick={ClearValue}>
+          <CircleX />
+        </button>
+      )}
     </div>
   )
 }

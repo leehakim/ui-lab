@@ -3,8 +3,8 @@ import styles from './Card.module.scss'
 import clsx from 'clsx'
 
 export const CARD_META = {
-  title: { type: 'string', default: '' },
-  description: { type: 'string', default: '' },
+  title: { type: 'string', default: 'Title' },
+  description: { type: 'string', default: 'Description...' },
   padding: { type: 'select', options: ['sm', 'md', 'lg'], default: 'md' },
   shadow: { type: 'boolean', default: true },
   bordered: { type: 'boolean', default: true },
@@ -24,7 +24,7 @@ export function Card({ title, description, padding, shadow, bordered, children }
     <div
       className={clsx(styles.card, styles[padding as keyof typeof styles], {
         [styles.hasShadow]: shadow,
-        [styles.isBoard]: bordered,
+        [styles.isBordered]: bordered,
       })}
     >
       {(title || description) && (
@@ -33,7 +33,7 @@ export function Card({ title, description, padding, shadow, bordered, children }
           {description && <p className={styles.description}>{description}</p>}
         </div>
       )}
-      <div className={styles.body}>{children}</div>
+      <div className={styles.body}>{children ? children : 'Contents...'}</div>
     </div>
   )
 }

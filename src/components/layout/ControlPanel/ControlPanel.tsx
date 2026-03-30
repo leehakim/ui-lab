@@ -5,12 +5,14 @@ import { Input, INPUT_META } from '@/library/Input'
 import { Select } from '@/library/Select/Select'
 import { BUTTON_META } from '@/library/Button'
 import { CARD_META } from '@/library/Card/Card'
+import { RADIOGROUP_META } from '@/library/RadioGroup'
 
 const COMPONENT_METAS = {
   Button: BUTTON_META,
   Checkbox: CHECKBOX_META,
-  Input: INPUT_META,
   Card: CARD_META,
+  Input: INPUT_META,
+  RadioGroup: RADIOGROUP_META,
 }
 
 export function ControlPanel() {
@@ -46,12 +48,18 @@ export function ControlPanel() {
                         checked={Boolean(value)}
                         onChange={(checked) => updateConfig(selectedComponent, { [key]: checked })}
                       />
-                    ) : (
+                    ) : schema.options ? (
                       <Select
-                        selected={String(value)}
+                        value={String(value)}
                         options={schema.options.map((v: string) => ({ value: v, label: v }))}
                         onChange={(val) => updateConfig(selectedComponent, { [key]: val })}
                       />
+                    ) : (
+                      <ul>
+                        {schema.default.map((d) => (
+                          <li>{d}</li>
+                        ))}
+                      </ul>
                     )}
                   </td>
                 </tr>

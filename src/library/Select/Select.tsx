@@ -4,21 +4,24 @@ import { useEffect, useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 export const SELECT_META = {
-  selected: { type: 'string', default: 'option 1' },
-  options: { type: 'select', options: ['option 1', 'option 2', 'option 3'] },
+  options: {
+    type: 'array',
+    options: ['option_01', 'option_02', 'option_03'],
+    default: 'option_01',
+  },
   disabled: { type: 'boolean', default: false },
   placeholder: { type: 'string', default: 'select' },
 } as const
 
 export interface SelectProps {
-  selected?: string
+  value?: string
   options: { value: string; label: string }[]
-  onChange: (value: string) => void
   disabled?: boolean
   placeholder?: string
+  onChange: (value: string) => void
 }
 
-export function Select({ selected, options, onChange, disabled, placeholder }: SelectProps) {
+export function Select({ value, options, onChange, disabled, placeholder }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   const selectRef = useRef<HTMLDivElement>(null)
@@ -61,7 +64,7 @@ export function Select({ selected, options, onChange, disabled, placeholder }: S
         disabled={disabled}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{selected ? selected : placeholder}</span>
+        <span>{value ? value : placeholder}</span>
         <ChevronDown className={styles.arrow} />
       </button>
       {isOpen && (
@@ -73,7 +76,7 @@ export function Select({ selected, options, onChange, disabled, placeholder }: S
                   type="button"
                   role="option"
                   className={clsx(styles.option, {
-                    [styles.isSelected]: selected === option.label,
+                    [styles.isSelected]: value === option.value,
                   })}
                   onClick={() => handleSelect(option.value)}
                 >
